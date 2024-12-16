@@ -1,25 +1,34 @@
 name: share_tracker
-description: "A new Flutter package project."
-version: 0.0.1
-homepage:
+description: "package to track user's location and monitor step count and pedestrian status."
+homepage: https://github.com/share-tracker
+repository: https://github.com/share-tracker/share-tracker
+version: 1.0.2
 
 environment:
-  sdk: '>=3.4.4 <4.0.0'
+  sdk: ">=3.4.4 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
+  dangple_mobile_tracker: ^1.0.1
+
+  flutter_foreground_task: ^8.17.0
+
+  pedometer: ^4.0.2
+  permission_handler: ^11.3.1
+
+  geolocator: ^13.0.2
+
+  sensors_plus: ^6.1.1
+
   flutter:
     sdk: flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^3.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
 
   # To add assets to your package, add an assets section, like this:

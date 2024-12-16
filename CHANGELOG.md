@@ -1,3 +1,11 @@
-## 0.0.1
+## 1.0.2
 
-* TODO: Describe initial release.
+- modified for customization.
+
+## 1.0.1
+
+- allow arguments to be added to the constructor.
+
+## 1.0.0
+
+- package for tracking devices.
