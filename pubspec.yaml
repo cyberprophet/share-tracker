@@ -9,7 +9,16 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  dangple_mobile_tracker: ^1.0.0
+  dangple_mobile_tracker: ^1.0.1
+
+  flutter_foreground_task: ^8.17.0
+
+  pedometer: ^4.0.2
+  permission_handler: ^11.3.1
+
+  geolocator: ^13.0.2
+
+  sensors_plus: ^6.1.1
 
   flutter:
     sdk: flutter
