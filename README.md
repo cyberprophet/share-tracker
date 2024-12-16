@@ -1,3 +1,6 @@
+[![Android](https://github.com/share-tracker/share-tracker/actions/workflows/android.yml/badge.svg?branch=dev&event=push)](https://github.com/share-tracker/share-tracker/actions/workflows/android.yml)
+[![iOS](https://github.com/share-tracker/share-tracker/actions/workflows/iOS.yml/badge.svg?branch=dev&event=push)](https://github.com/share-tracker/share-tracker/actions/workflows/iOS.yml)
+
 ## Overview
 
 The Share Tracker package allows you to track device movements, locations, and other related data in a foreground service within your Flutter application. This example demonstrates how to integrate and use the Share Tracker package to display location and movement data in a simple Flutter application.
