@@ -112,5 +112,5 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  final _controller = TrackerController();
+  final _controller = TrackerController(id: 101, title: 'tracker');
 }

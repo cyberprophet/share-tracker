@@ -1,10 +1,12 @@
 part of "../../share_tracker.dart";
 
 class TrackerController extends BaseController with ErrorHandlerMixin {
+  TrackerController({required this.id, required this.title});
+
   void _startService() async {
     try {
       if (!await TrackerService.instance.isRunningService) {
-        final _ = await TrackerService.instance.start(977, '추적자');
+        final _ = await TrackerService.instance.start(id, title);
       }
     } catch (e, s) {
       handleError(e, s);
@@ -30,6 +32,9 @@ class TrackerController extends BaseController with ErrorHandlerMixin {
 
     super.dispose();
   }
+
+  final int id;
+  final String title;
 
   final ValueNotifier<Tracker?> listenable = ValueNotifier(null);
 }
