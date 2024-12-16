@@ -1,7 +1,7 @@
 part of '../../share_tracker.dart';
 
 class Tracker {
-  DateTime sendTime;
+  DateTime initTime;
   UserAccelerometerEvent? userAccelerometer;
   AccelerometerEvent? accelerometer;
   GyroscopeEvent? gyroscope;
@@ -11,9 +11,11 @@ class Tracker {
   PedestrianStatus? pedestrianStatus;
   Position? position;
   String? status;
+  int? minutes;
+  int? seconds;
 
   Tracker({
-    required this.sendTime,
+    required this.initTime,
     this.userAccelerometer,
     this.accelerometer,
     this.gyroscope,
@@ -23,6 +25,8 @@ class Tracker {
     this.stepCount,
     this.position,
     this.status,
+    this.minutes,
+    this.seconds,
   });
 
   factory Tracker.fromJson(Map<String, dynamic> json) {
@@ -65,7 +69,9 @@ class Tracker {
       position:
           json['position'] != null ? Position.fromMap(json['position']) : null,
       stepCount: DangpleStepCount.fromJson(json['step_count']),
-      sendTime: DateTime.now(),
+      initTime: DateTime.tryParse(json['init_time']) ?? DateTime.now(),
+      minutes: json['minutes'],
+      seconds: json['seconds'],
     );
   }
 
@@ -101,7 +107,10 @@ class Tracker {
       'barometer': {
         'pressure': barometer?.pressure,
         'timestamp': barometer?.timestamp.toIso8601String()
-      }
+      },
+      'init_time': initTime.toIso8601String(),
+      'minutes': minutes,
+      'seconds': seconds
     };
   }
 
