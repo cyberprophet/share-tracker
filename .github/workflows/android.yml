@@ -28,7 +28,11 @@ jobs:
     - run: flutter --version
       
     - name: Install dependencies
-      run: flutter pub get
+      run: |
+        cd example
+        flutter pub get
       
     - name: Build android
-      run: flutter build apk --release --split-per-abi
+      run: |
+        cd example
+        flutter build apk --release --split-per-abi
