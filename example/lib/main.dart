@@ -92,7 +92,7 @@ class _MainPageState extends State<MainPage> {
                     : 0,
               ),
             ),
-            DataRow(cells: _buildDataCells('sendTime', tracker?.sendTime)),
+            DataRow(cells: _buildDataCells('initTime', tracker?.initTime)),
           ],
         )
       ],

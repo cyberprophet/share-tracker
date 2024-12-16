@@ -29,7 +29,7 @@ class TrackerHandler extends TaskHandler {
 
   @override
   void onRepeatEvent(DateTime timestamp) {
-    final difference = timestamp.difference(_tracker.sendTime.toUtc());
+    final difference = timestamp.difference(_tracker.initTime.toUtc());
 
     final minutes = difference.inMinutes;
     final seconds = difference.inSeconds % 60;
@@ -37,6 +37,9 @@ class TrackerHandler extends TaskHandler {
     final _ = FlutterForegroundTask.updateService(
       notificationText: '${_distance.toStringAsFixed(2)}㎞\n$minutes분 $seconds초',
     );
+    _tracker.minutes = minutes;
+    _tracker.seconds = seconds;
+
     FlutterForegroundTask.sendDataToMain(_tracker.toMap());
   }
 
@@ -145,5 +148,5 @@ class TrackerHandler extends TaskHandler {
 
   double _distance = 0;
 
-  final _tracker = Tracker(sendTime: DateTime.now());
+  final _tracker = Tracker(initTime: DateTime.now());
 }

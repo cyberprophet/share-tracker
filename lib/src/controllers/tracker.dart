@@ -3,7 +3,8 @@ part of "../../share_tracker.dart";
 class TrackerController extends BaseController with ErrorHandlerMixin {
   TrackerController({required this.id, required this.title});
 
-  void _startService() async {
+  @protected
+  void startService() async {
     try {
       if (!await TrackerService.instance.isRunningService) {
         final _ = await TrackerService.instance.start(id, title);
@@ -17,7 +18,7 @@ class TrackerController extends BaseController with ErrorHandlerMixin {
 
   @override
   void attach(State state) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _startService());
+    WidgetsBinding.instance.addPostFrameCallback((_) => startService());
 
     TrackerService.instance.addTrackerChangedCallback(_onTrackerChanged);
 
