@@ -1,3 +1,7 @@
+## 1.0.3
+
+- set to fit iOS.
+
 ## 1.0.2
 
 - modified for customization.
