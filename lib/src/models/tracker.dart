@@ -38,8 +38,10 @@ class Tracker {
 
     return Tracker(
       barometer: BarometerEvent(
-        barometer['pressure'],
-        DateTime.tryParse(barometer['timestamp']) ?? DateTime.now(),
+        barometer['pressure'] ?? 0,
+        barometer['timestamp'] != null
+            ? DateTime.tryParse(barometer['timestamp']) ?? DateTime.now()
+            : DateTime.now(),
       ),
       magnetometer: MagnetometerEvent(
         magnetometer['x'],
