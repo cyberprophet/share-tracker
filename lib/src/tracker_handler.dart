@@ -56,11 +56,15 @@ class TrackerHandler extends TaskHandler {
       final _ =
           FlutterForegroundTask.updateService(notificationTitle: status.name);
     });
-    final locationSettings = LocationSettings(
-      accuracy: Platform.isAndroid
-          ? LocationAccuracy.high
-          : LocationAccuracy.bestForNavigation,
-    );
+    final locationSettings = Platform.isAndroid
+        ? AndroidSettings(accuracy: LocationAccuracy.high, distanceFilter: 5)
+        : AppleSettings(
+            accuracy: LocationAccuracy.bestForNavigation,
+            activityType: ActivityType.fitness,
+            distanceFilter: 5,
+            pauseLocationUpdatesAutomatically: true,
+            showBackgroundLocationIndicator: true,
+          );
     _streamPositionSubscription =
         Geolocator.getPositionStream(locationSettings: locationSettings)
             .listen(onReceivePosition);
