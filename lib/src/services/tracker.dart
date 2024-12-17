@@ -33,9 +33,9 @@ class TrackerService {
       iosNotificationOptions:
           const IOSNotificationOptions(showNotification: false),
       foregroundTaskOptions: ForegroundTaskOptions(
-        eventAction:
-            ForegroundTaskEventAction.repeat((kDebugMode ? 1 : 10) * 1000),
+        allowWifiLock: true,
         autoRunOnBoot: true,
+        eventAction: ForegroundTaskEventAction.repeat(1000),
       ),
     );
   }
@@ -86,11 +86,15 @@ class TrackerService {
         responsePermission =
             await FlutterForegroundTask.openSystemAlertWindowSettings();
       }
-    }
 
-    if (!await Permission.activityRecognition.isGranted) {
-      responsePermission =
-          (await Permission.activityRecognition.request()).isGranted;
+      if (!await Permission.activityRecognition.isGranted) {
+        responsePermission =
+            (await Permission.activityRecognition.request()).isGranted;
+      }
+    } else {
+      if (!await Permission.sensors.isGranted) {
+        responsePermission = (await Permission.sensors.request()).isGranted;
+      }
     }
     return responsePermission;
   }
@@ -110,9 +114,13 @@ class TrackerService {
           LocationPermission.denied == requestGeoPermission) {
         return await openAppSettings();
       }
-      return LocationPermission.always == await Geolocator.requestPermission();
+      return Platform.isIOS
+          ? LocationPermission.whileInUse == requestGeoPermission
+          : LocationPermission.always == await Geolocator.requestPermission();
     }
-    return LocationPermission.always == await Geolocator.checkPermission();
+    return Platform.isIOS
+        ? LocationPermission.whileInUse == await Geolocator.checkPermission()
+        : LocationPermission.always == await Geolocator.checkPermission();
   }
 
   Future<bool> get isRunningService => FlutterForegroundTask.isRunningService;
