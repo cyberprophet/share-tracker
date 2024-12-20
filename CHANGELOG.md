@@ -1,3 +1,7 @@
+## 1.0.4
+
+- provide default value for Null
+
 ## 1.0.3
 
 - set to fit iOS.

@@ -2,7 +2,7 @@ name: share_tracker
 description: "package to track user's location and monitor step count and pedestrian status."
 homepage: https://github.com/share-tracker
 repository: https://github.com/share-tracker/share-tracker
-version: 1.0.3
+version: 1.0.4
 
 environment:
   sdk: ">=3.4.4 <4.0.0"
