@@ -28,6 +28,3 @@ migrate_working_dir/
 build/
 tracker/
 .dart_tool/
-
-.flutter-plugins
-.flutter-plugins-dependencies
