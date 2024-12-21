@@ -79,7 +79,9 @@ class Tracker {
       status: json['status'],
       position:
           json['position'] != null ? Position.fromMap(json['position']) : null,
-      stepCount: DangpleStepCount.fromJson(json['step_count']),
+      stepCount: json['step_count'] != null
+          ? DangpleStepCount.fromJson(json['step_count'])
+          : DangpleStepCount(steps: 0, timeStamp: DateTime.now()),
       initTime: DateTime.tryParse(json['init_time']) ?? DateTime.now(),
       minutes: json['minutes'],
       seconds: json['seconds'],
