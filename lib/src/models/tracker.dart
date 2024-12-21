@@ -47,25 +47,34 @@ class Tracker {
         magnetometer['x'] ?? 0,
         magnetometer['y'] ?? 0,
         magnetometer['z'] ?? 0,
-        DateTime.tryParse(magnetometer['timestamp']) ?? DateTime.now(),
+        magnetometer['timestamp'] != null
+            ? DateTime.tryParse(magnetometer['timestamp']) ?? DateTime.now()
+            : DateTime.now(),
       ),
       gyroscope: GyroscopeEvent(
         gyroscope['x'] ?? 0,
         gyroscope['y'] ?? 0,
         gyroscope['z'] ?? 0,
-        DateTime.tryParse(gyroscope['timestamp']) ?? DateTime.now(),
+        gyroscope['timestamp'] != null
+            ? DateTime.tryParse(gyroscope['timestamp']) ?? DateTime.now()
+            : DateTime.now(),
       ),
       userAccelerometer: UserAccelerometerEvent(
         userAccelerometer['x'] ?? 0,
         userAccelerometer['y'] ?? 0,
         userAccelerometer['z'] ?? 0,
-        DateTime.tryParse(userAccelerometer['timestamp']) ?? DateTime.now(),
+        userAccelerometer['timestamp'] != null
+            ? DateTime.tryParse(userAccelerometer['timestamp']) ??
+                DateTime.now()
+            : DateTime.now(),
       ),
       accelerometer: AccelerometerEvent(
         accelerometer['x'] ?? 0,
         accelerometer['y'] ?? 0,
         accelerometer['z'] ?? 0,
-        DateTime.tryParse(accelerometer['timestamp']) ?? DateTime.now(),
+        accelerometer['timestamp'] != null
+            ? DateTime.tryParse(accelerometer['timestamp']) ?? DateTime.now()
+            : DateTime.now(),
       ),
       status: json['status'],
       position:
