@@ -84,7 +84,7 @@ class TrackerHandler extends TaskHandler {
     _streamBarometerSubscription =
         barometerEventStream().listen(onReceiveBarometer);
 
-    _tracker = Tracker(initTime: DateTime.now());
+    _tracker.initTime = DateTime.now();
   }
 
   @protected
@@ -154,5 +154,5 @@ class TrackerHandler extends TaskHandler {
 
   double _distance = 0;
 
-  late final Tracker _tracker;
+  final Tracker _tracker = Tracker(initTime: DateTime.now());
 }

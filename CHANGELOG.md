@@ -1,3 +1,7 @@
+## 1.0.5
+
+- initialize properties on startup
+
 ## 1.0.4
 
 - provide default value for Null
