@@ -6,15 +6,15 @@ void startTracker() => FlutterForegroundTask.setTaskHandler(TrackerHandler());
 class TrackerHandler extends TaskHandler {
   @override
   Future<void> onDestroy(DateTime timestamp) async {
-    _streamUserAccelerometerSubscription?.cancel();
-    _streamServiceStatusSubscription?.cancel();
-    _streamAccelerometerSubscription?.cancel();
-    _streamMagnetometerSubscription?.cancel();
-    _streamStepCountSubscription?.cancel();
-    _streamBarometerSubscription?.cancel();
-    _streamGyroscopeSubscription?.cancel();
-    _streamPositionSubscription?.cancel();
-    _streamStatusSubscription?.cancel();
+    await _streamUserAccelerometerSubscription?.cancel();
+    await _streamServiceStatusSubscription?.cancel();
+    await _streamAccelerometerSubscription?.cancel();
+    await _streamMagnetometerSubscription?.cancel();
+    await _streamStepCountSubscription?.cancel();
+    await _streamBarometerSubscription?.cancel();
+    await _streamGyroscopeSubscription?.cancel();
+    await _streamPositionSubscription?.cancel();
+    await _streamStatusSubscription?.cancel();
 
     _streamStatusSubscription = null;
     _streamPositionSubscription = null;
@@ -83,6 +83,8 @@ class TrackerHandler extends TaskHandler {
 
     _streamBarometerSubscription =
         barometerEventStream().listen(onReceiveBarometer);
+
+    _tracker.initTime = DateTime.now();
   }
 
   @protected
@@ -152,5 +154,5 @@ class TrackerHandler extends TaskHandler {
 
   double _distance = 0;
 
-  final _tracker = Tracker(initTime: DateTime.now());
+  final Tracker _tracker = Tracker(initTime: DateTime.now());
 }
