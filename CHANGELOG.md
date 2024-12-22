@@ -1,3 +1,7 @@
+## 1.0.8
+
+- increase the importance of notifications
+
 ## 1.0.7
 
 - provide default value for Null
