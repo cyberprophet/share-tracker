@@ -21,14 +21,16 @@ class TrackerService {
     _callbacks.remove(callback);
   }
 
-  void init() {
+  void init({String? id, String? name}) {
     FlutterForegroundTask.initCommunicationPort();
     FlutterForegroundTask.addTaskDataCallback(_onReceiveTaskData);
     FlutterForegroundTask.init(
       androidNotificationOptions: AndroidNotificationOptions(
-        channelId: 'tracker_service',
-        channelName: 'Tracker Service',
+        channelId: id ?? 'tracker_service',
+        channelName: name ?? 'Tracker Service',
+        channelImportance: NotificationChannelImportance.HIGH,
         onlyAlertOnce: true,
+        priority: NotificationPriority.HIGH,
       ),
       iosNotificationOptions:
           const IOSNotificationOptions(showNotification: false),
