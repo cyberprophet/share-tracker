@@ -2,7 +2,7 @@ name: share_tracker
 description: "package to track user's location and monitor step count and pedestrian status."
 homepage: https://github.com/share-tracker
 repository: https://github.com/share-tracker/share-tracker
-version: 1.0.6
+version: 1.0.9
 
 environment:
   sdk: ">=3.4.4 <4.0.0"
@@ -12,6 +12,8 @@ dependencies:
   dangple_mobile_tracker: ^1.0.1
 
   flutter_foreground_task: ^8.17.0
+
+  intl: ^0.20.1
 
   pedometer: ^4.0.2
   permission_handler: ^11.3.1

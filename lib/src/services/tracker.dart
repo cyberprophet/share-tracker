@@ -5,10 +5,10 @@ typedef TrackerChanged = void Function(Tracker tracker);
 class TrackerService {
   TrackerService._();
 
-  void _onReceiveTaskData(Object json) {
-    if (json is Map<String, dynamic>) {
+  void _onReceiveTaskData(Object obj) {
+    if (obj is Map<String, dynamic>) {
       for (final callback in _callbacks) {
-        callback(Tracker.fromJson(json));
+        callback(Tracker.fromJson(obj));
       }
     }
   }
@@ -21,14 +21,16 @@ class TrackerService {
     _callbacks.remove(callback);
   }
 
-  void init() {
+  void init({String? id, String? name}) {
     FlutterForegroundTask.initCommunicationPort();
     FlutterForegroundTask.addTaskDataCallback(_onReceiveTaskData);
     FlutterForegroundTask.init(
       androidNotificationOptions: AndroidNotificationOptions(
-        channelId: 'tracker_service',
-        channelName: 'Tracker Service',
+        channelId: id ?? 'tracker_service',
+        channelName: name ?? 'Tracker Service',
+        channelImportance: NotificationChannelImportance.HIGH,
         onlyAlertOnce: true,
+        priority: NotificationPriority.HIGH,
       ),
       iosNotificationOptions:
           const IOSNotificationOptions(showNotification: false),

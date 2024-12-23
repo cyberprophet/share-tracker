@@ -1,3 +1,15 @@
+## 1.0.9
+
+- dispose the connected listener
+
+## 1.0.8
+
+- increase the importance of notifications
+
+## 1.0.7
+
+- provide default value for Null
+
 ## 1.0.6
 
 - provide default value for Null
