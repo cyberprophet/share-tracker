@@ -1,3 +1,7 @@
+## 1.0.9
+
+- dispose the connected listener
+
 ## 1.0.8
 
 - increase the importance of notifications
