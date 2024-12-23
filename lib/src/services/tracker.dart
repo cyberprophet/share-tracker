@@ -5,10 +5,10 @@ typedef TrackerChanged = void Function(Tracker tracker);
 class TrackerService {
   TrackerService._();
 
-  void _onReceiveTaskData(Object json) {
-    if (json is Map<String, dynamic>) {
+  void _onReceiveTaskData(Object obj) {
+    if (obj is Map<String, dynamic>) {
       for (final callback in _callbacks) {
-        callback(Tracker.fromJson(json));
+        callback(Tracker.fromJson(obj));
       }
     }
   }

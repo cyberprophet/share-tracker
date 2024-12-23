@@ -15,27 +15,18 @@ class TrackerHandler extends TaskHandler {
     await _streamGyroscopeSubscription?.cancel();
     await _streamPositionSubscription?.cancel();
     await _streamStatusSubscription?.cancel();
-
-    _streamStatusSubscription = null;
-    _streamPositionSubscription = null;
-    _streamGyroscopeSubscription = null;
-    _streamStepCountSubscription = null;
-    _streamBarometerSubscription = null;
-    _streamMagnetometerSubscription = null;
-    _streamAccelerometerSubscription = null;
-    _streamServiceStatusSubscription = null;
-    _streamUserAccelerometerSubscription = null;
   }
 
   @override
   void onRepeatEvent(DateTime timestamp) {
     final difference = timestamp.difference(_tracker.initTime.toUtc());
 
-    final minutes = difference.inMinutes;
-    final seconds = difference.inSeconds % 60;
+    minutes = difference.inMinutes;
+    seconds = difference.inSeconds % 60;
 
     final _ = FlutterForegroundTask.updateService(
-      notificationText: '${_distance.toStringAsFixed(2)}㎞\n$minutes분 $seconds초',
+      notificationText:
+          '${NumberFormat("#,##0").format(_tracker.stepCount?.steps)}보\n$minutes분 $seconds초',
     );
     _tracker.minutes = minutes;
     _tracker.seconds = seconds;
@@ -138,6 +129,9 @@ class TrackerHandler extends TaskHandler {
     }
     _tracker.position = position;
   }
+
+  @protected
+  int minutes = 0, seconds = 0;
 
   StreamSubscription<DangpleStepCount>? _streamStepCountSubscription;
   StreamSubscription<PedestrianStatus>? _streamStatusSubscription;
